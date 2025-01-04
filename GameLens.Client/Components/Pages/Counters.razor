@@ -1,0 +1,37 @@
+﻿@page "/counters"
+
+<PageTitle>GameLens - Counters</PageTitle>
+
+<MudContainer>
+    <MudText Typo="Typo.h4" Align="Align.Center" GutterBottom="true">Counters</MudText>
+
+    <div class="d-flex">
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@RoleFilterToggle" StartIcon="@Icons.Material.Filled.FilterAlt">Roles</MudButton>
+
+        <MudPopover Open="@_roleFilterOpen" AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.TopCenter">
+            <MudStack>
+                <MudText>Filters</MudText>
+
+                <MudStack Row="true">
+                    <MudCheckBox @bind-Value="ShowTank" Label="Tank" Color="Color.Primary"></MudCheckBox>
+                    <MudCheckBox @bind-Value="ShowDamage" Label="Damage" Color="Color.Error" />
+                    <MudCheckBox @bind-Value="ShowSupport" Label="Support" Color="Color.Success" />
+                </MudStack>
+
+            </MudStack>
+        </MudPopover>
+    </div>
+
+    <MudGrid>
+        <MudItem lg="4" xl="4">
+            <RoleCounterList Role="Tank" Counters="TankCounters" ShowTank="ShowTank" ShowDamage="ShowDamage" ShowSupport="ShowSupport" />
+        </MudItem>
+        <MudItem lg="4" xl="4">
+            <RoleCounterList Role="Damage" Counters="DamageCounters" ShowTank="ShowTank" ShowDamage="ShowDamage" ShowSupport="ShowSupport" />
+        </MudItem>
+        <MudItem lg="4" xl="4">
+            <RoleCounterList Role="Support" Counters="SupportCounters" ShowTank="ShowTank" ShowDamage="ShowDamage" ShowSupport="ShowSupport" />
+        </MudItem>
+
+    </MudGrid>
+</MudContainer>

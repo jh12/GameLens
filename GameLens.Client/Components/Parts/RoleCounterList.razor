@@ -1,0 +1,28 @@
+﻿@using GameLens.Client.Components.Pages
+@using GameLens.Shared.Models
+<MudText Typo="Typo.h4" Align="Align.Center" GutterBottom="true">@Role</MudText>
+
+<MudTimeline TimelineOrientation="TimelineOrientation.Vertical" TimelinePosition="TimelinePosition.Left">
+    @foreach (HeroCounter counter in Counters)
+    {
+        <MudTimelineItem Color="Color.Primary" Variant="Variant.Filled">
+            <ItemDot>
+                <MudAvatar Size="Size.Medium">
+                    <MudImage Src="@($"api/hero/{counter.Hero.Id}/avatar")" />
+                </MudAvatar>
+            </ItemDot>
+            <ItemContent>
+                <MudAvatarGroup Spacing="0">
+                    @foreach (Hero hero in counter.Counters.Where(ShouldShow).OrderBy(x => x, HeroRoleComparer.Instance))
+                    {
+                        <MudBadge Icon="@GetRoleIcon(hero)" Color="@GetRoleColor(hero)" Overlap="true">
+                            <MudAvatar Size="Size.Small">
+                                <MudImage Src="@($"api/hero/{hero.Id}/avatar")" />
+                            </MudAvatar>
+                        </MudBadge>
+                    }   
+                </MudAvatarGroup>
+            </ItemContent>
+        </MudTimelineItem>
+    }
+</MudTimeline>

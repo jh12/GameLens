@@ -15,6 +15,9 @@ COPY src/GameLens src/GameLens
 COPY src/GameLens.Client src/GameLens.Client
 COPY src/GameLens.Shared src/GameLens.Shared
 
+RUN ls -l .
+RUN ls -l src/
+
 RUN dotnet restore -a $TARGETARCH
 
 COPY ./src ./src

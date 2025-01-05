@@ -1,4 +1,4 @@
-﻿using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 using GameLens.Models.Internal;
 using GameLens.Shared.Models;
@@ -33,7 +33,7 @@ internal class CounterService : ICounterService
         string filePath = Path.Combine(_rootPath, "assets/data/Counters.json");
 
         await using FileStream stream = File.OpenRead(filePath);
-        await foreach (HeroCounterInternal counter in JsonSerializer.DeserializeAsyncEnumerable<HeroCounterInternal>(stream, _serializerOptions, cancellationToken))
+        foreach (HeroCounterInternal counter in (await JsonSerializer.DeserializeAsync<HeroCounterInternal[]>(stream, _serializerOptions, cancellationToken))!)
         {
             Hero hero = heroMap[counter!.Id];
             Hero[] counterHeroes = counter.Counters?.Select(c => heroMap[c]).ToArray() ?? [];

@@ -1,7 +1,7 @@
+﻿using GameLens.Components;
 using GameLens.Endpoints;
 using GameLens.Services;
 using GameLens.Shared.Services;
-using GameLens.Components;
 using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);

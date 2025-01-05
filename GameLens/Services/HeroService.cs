@@ -27,7 +27,7 @@ internal class HeroService : IHeroService
         string filePath = Path.Combine(_rootPath, "assets/data/Heroes.json");
 
         await using FileStream stream = File.OpenRead(filePath);
-        await foreach (Hero hero in JsonSerializer.DeserializeAsyncEnumerable<Hero>(stream, _serializerOptions, cancellationToken))
+        foreach (Hero hero in (await JsonSerializer.DeserializeAsync<Hero[]>(stream, _serializerOptions, cancellationToken))!)
         {
             yield return hero;
         }

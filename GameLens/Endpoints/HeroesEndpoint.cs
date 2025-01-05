@@ -25,7 +25,7 @@ internal static class HeroesEndpoint
         }
     }
 
-    private static Results<IResult,NotFound> Avatar(string name)
+    private static Results<IResult, NotFound> Avatar(string name)
     {
         return TypedResults.VirtualFile($"assets/heroes/{name}.png", "image/png");
     }

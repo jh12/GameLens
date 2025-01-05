@@ -49,12 +49,12 @@ internal class HeroRoleComparer : IComparer<Hero>
 
     public int Compare(Hero? x, Hero? y)
     {
-        int xRole = _roleOrder.GetValueOrDefault(x.Role, -1);
-        int yRole = _roleOrder.GetValueOrDefault(y.Role, -1);
+        int xRole = _roleOrder.GetValueOrDefault(x!.Role, -1);
+        int yRole = _roleOrder.GetValueOrDefault(y!.Role, -1);
 
         int roleCompare = xRole.CompareTo(yRole);
 
-        if(roleCompare != 0)
+        if (roleCompare != 0)
             return roleCompare;
 
         return string.Compare(x.Name, y.Name, StringComparison.Ordinal);

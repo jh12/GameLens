@@ -1,4 +1,4 @@
-using GameLens.Client.Services;
+﻿using GameLens.Client.Services;
 using GameLens.Shared.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;

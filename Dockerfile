@@ -20,7 +20,7 @@ RUN ls -l src/
 
 RUN dotnet restore -a $TARGETARCH
 
-COPY ./src ./src
+COPY src src
 RUN dotnet build "./src/GameLens/GameLens.csproj" -c $BUILD_CONFIGURATION -a $TARGETARCH -o /app/build
 
 

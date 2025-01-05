@@ -4,7 +4,6 @@ on:
     branches:
       - main
       - develop
-      - workflow
 
 env:
   REGISTRY: ghcr.io
@@ -54,7 +53,7 @@ jobs:
         builder: ${{ steps.buildx.outputs.name }}
         platforms: linux/amd64,linux/arm64
         context: .
-        push: false
+        push: true
         provenance: false
         tags: |
           ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.gitversion.outputs.NuGetVersionV2 }}

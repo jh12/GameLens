@@ -15,6 +15,7 @@ IServiceCollection services = builder.Services;
 services.AddMudServices();
 services.AddTransient<ICounterService, CounterService>();
 services.AddTransient<IHeroService, HeroService>();
+services.AddTransient<IThumbnailService, ThumbnailService>();
 
 services.AddSingleton(builder.Environment);
 
@@ -36,5 +37,8 @@ app.MapRazorComponents<App>()
 app
     .MapCountersEndpoints()
     .MapHeroesEndpoints();
+
+IThumbnailService thumbnailService = app.Services.GetRequiredService<IThumbnailService>();
+await thumbnailService.EnsureThumbnailsAsync();
 
 app.Run();

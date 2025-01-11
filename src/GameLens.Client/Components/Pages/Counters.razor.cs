@@ -27,7 +27,6 @@ public partial class Counters
         TankCounters = lookup["tank"].OrderBy(x => x.Hero, HeroRoleComparer.Instance).ToArray();
         DamageCounters = lookup["damage"].OrderBy(x => x.Hero, HeroRoleComparer.Instance).ToArray();
         SupportCounters = lookup["support"].OrderBy(x => x.Hero, HeroRoleComparer.Instance).ToArray();
-        StateHasChanged();
     }
 
     private void RoleFilterToggle()

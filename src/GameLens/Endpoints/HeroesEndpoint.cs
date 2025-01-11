@@ -25,8 +25,10 @@ internal static class HeroesEndpoint
         }
     }
 
-    private static Results<IResult, NotFound> Avatar(string name)
+    private static async Task<Results<IResult, NotFound>> Avatar(string name, IThumbnailService thumbnailService)
     {
-        return TypedResults.VirtualFile($"assets/heroes/{name}.png", "image/png");
+        Stream thumbnailStream = await thumbnailService.GetHeroThumbnailAsync(name);
+
+        return TypedResults.Stream(thumbnailStream, "image/png");
     }
 }
